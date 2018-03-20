@@ -13,9 +13,12 @@ public class Config {
     //String to hold the bot's token
     public static final String DISCORD_TOKEN;
 
+    public static final String GUILD_ID;
+
     //Gets the data when class is first noticed
     static {
         DISCORD_TOKEN = getData("Token: ").get(0);
+        GUILD_ID = getData("Guild ID: ").get(0);
     }
 
     private static ArrayList<String> getData(String key) {

@@ -20,7 +20,7 @@ public class Connect {
     public static final String PREFIX = "++";
 
     //JDA instance
-    private static JDA discord = null;
+    public static JDA discord = null;
 
     //Connects the bot to discord
     public static void main(String[] args) throws LoginException, InterruptedException {
