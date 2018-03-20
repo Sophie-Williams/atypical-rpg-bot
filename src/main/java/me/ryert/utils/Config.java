@@ -13,6 +13,7 @@ public class Config {
     //String to hold the bot's token
     public static final String DISCORD_TOKEN;
 
+    //String to hold the Guild ID of main server
     public static final String GUILD_ID;
 
     //Gets the data when class is first noticed
@@ -21,6 +22,7 @@ public class Config {
         GUILD_ID = getData("Guild ID: ").get(0);
     }
 
+    //Returns the searched for data
     private static ArrayList<String> getData(String key) {
 
         //ArrayList Variable to hold results
