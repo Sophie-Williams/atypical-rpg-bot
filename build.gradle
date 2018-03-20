@@ -8,6 +8,7 @@ mainClassName = 'me.ryert.Bot.Connect'
 
 version '1.0'
 def jdaVersion = '3.5.1_351'
+def jdbcVersion = '3.21.0.1'
 
 sourceCompatibility = 1.8
 
@@ -17,6 +18,7 @@ repositories {
 
 dependencies {
     compile "net.dv8tion:JDA:$jdaVersion"
+    compile "org.xerial:sqlite-jdbc:$jdbcVersion"
     compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
     compile group: 'ch.qos.logback', name:'logback-classic', version: '1.0.9'
     compile group: 'ch.qos.logback', name:'logback-core', version: '1.0.9'
