@@ -10,8 +10,10 @@ import net.dv8tion.jda.core.managers.GuildController;
  */
 public class GuildManagement {
 
+    //Guild Controller with main guild
     public static final GuildController CONTROLLER = new GuildController(Connect.discord.getGuildById(Config.GUILD_ID));
 
+    //Adds specified role to player
     public static void addRole(Member member, String roleName) {
         CONTROLLER.addRolesToMember(member, Connect.discord.getRolesByName(roleName, true)).queue();
 

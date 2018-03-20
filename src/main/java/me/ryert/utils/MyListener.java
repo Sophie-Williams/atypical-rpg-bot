@@ -29,8 +29,7 @@ public class MyListener extends ListenerAdapter {
             content = content.replaceFirst(Connect.PREFIX, "");
         else
             return;
-
-        //TODO: Add Commands and hierarchy
+        
     }
 
     @Override
