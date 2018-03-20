@@ -3,8 +3,10 @@ package me.ryert.utils;
 import me.ryert.bot.Connect;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.core.managers.GuildController;
 
 public class MyListener extends ListenerAdapter {
 
@@ -22,12 +24,17 @@ public class MyListener extends ListenerAdapter {
         Message message = event.getMessage();
         String content = message.getContentRaw();
 
-        //Cleans prefix
+        //Checks for prefix
         if (content.indexOf(Connect.PREFIX) == 0)
             content = content.replaceFirst(Connect.PREFIX, "");
         else
             return;
 
         //TODO: Add Commands and hierarchy
+    }
+
+    @Override
+    public void onGuildMemberJoin(GuildMemberJoinEvent event) {
+        GuildManagement.addRole(event.getMember(), "Arrival");
     }
 }
