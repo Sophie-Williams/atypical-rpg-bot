@@ -10,9 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class Connect {
 
@@ -25,8 +22,8 @@ public class Connect {
     //JDA instance
     public static JDA discord = null;
 
-    //Connection object to hold database
-    public static Connection connection;
+    //Database Location
+    public static final String DATABASE = "C:\\databases\\PlayerData.db";
 
     //Connects the bot to discord
     public static void main(String[] args) throws LoginException, InterruptedException {
@@ -35,14 +32,5 @@ public class Connect {
                 .setToken(Config.DISCORD_TOKEN)
                 .addEventListener(new MyListener())
                 .buildBlocking();
-    }
-
-    //Connects to our info database
-    static {
-        try {
-            connection = DriverManager.getConnection("jdbc:sqlite:C:\\databases\\PlayerData.db");
-        } catch (SQLException e) {
-            System.out.println("DataBase Issue: " + e.getMessage());
-        }
     }
 }
