@@ -11,6 +11,10 @@ import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 
+/**
+ * Starting class that connects the bot to discord's service.
+ * @author Ryert
+ */
 public class Connect {
 
     //Log variable

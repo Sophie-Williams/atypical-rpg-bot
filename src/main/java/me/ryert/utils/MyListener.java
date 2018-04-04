@@ -1,7 +1,6 @@
 package me.ryert.utils;
 
 import me.ryert.bot.Connect;
-import me.ryert.player.classes.Warrior;
 import me.ryert.player.data.Inventory;
 import me.ryert.player.data.Player;
 import net.dv8tion.jda.core.entities.Message;
@@ -11,6 +10,10 @@ import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+/**
+ * Listener for the bot's command system.
+ * @author Ryert
+ */
 public class MyListener extends ListenerAdapter {
 
     @Override
