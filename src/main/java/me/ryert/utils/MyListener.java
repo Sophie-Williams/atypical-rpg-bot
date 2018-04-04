@@ -1,12 +1,15 @@
 package me.ryert.utils;
 
 import me.ryert.bot.Connect;
+import me.ryert.player.classes.Warrior;
+import me.ryert.player.data.Inventory;
+import me.ryert.player.data.Player;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.dv8tion.jda.core.managers.GuildController;
 
 public class MyListener extends ListenerAdapter {
 
@@ -29,11 +32,18 @@ public class MyListener extends ListenerAdapter {
             content = content.replaceFirst(Connect.PREFIX, "");
         else
             return;
-        
     }
 
+    //Sets up the new player's data
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         GuildManagement.addRole(event.getMember(), "Arrival");
+        if (DatabaseManager.lookup(event.getUser().getId()) == null)
+            DatabaseManager.add(event.getMember().getUser().getId(), new Player(), new Inventory(7));
+    }
+
+    @Override
+    public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
+        //TODO: Move the user to a tobepurged table
     }
 }
