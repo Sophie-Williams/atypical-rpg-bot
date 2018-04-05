@@ -21,7 +21,7 @@ public class Connect {
     private static final Logger log = LoggerFactory.getLogger(Connect.class);
 
     //Prefix for commands
-    public static final String PREFIX = "++";
+    public static final String PREFIX = "--";
 
     //JDA instance
     public static JDA discord = null;
@@ -32,7 +32,7 @@ public class Connect {
     //Connects the bot to discord
     public static void main(String[] args) throws LoginException, InterruptedException {
         discord = new JDABuilder(AccountType.BOT)
-                .setGame(Game.playing("Type ++start to Join!"))
+                .setGame(Game.playing("Type " + PREFIX + "start to Join!"))
                 .setToken(Config.DISCORD_TOKEN)
                 .addEventListener(new MyListener())
                 .buildBlocking();
