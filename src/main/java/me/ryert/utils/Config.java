@@ -16,10 +16,14 @@ public class Config {
     //String to hold the Guild ID of main server
     public static final String GUILD_ID;
 
+    //String to hold the Channel ID of log channel
+    public static final String LOG_CHANNEL;
+
     //Gets the data when class is first noticed
     static {
         DISCORD_TOKEN = getData("Token: ").get(0);
         GUILD_ID = getData("Guild ID: ").get(0);
+        LOG_CHANNEL = getData("Log Channel: ").get(0);
     }
 
     //Returns the searched for data

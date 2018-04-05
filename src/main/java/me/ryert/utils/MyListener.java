@@ -1,6 +1,7 @@
 package me.ryert.utils;
 
 import me.ryert.bot.Connect;
+import me.ryert.commands.RefreshData;
 import me.ryert.player.data.Inventory;
 import me.ryert.player.data.Player;
 import net.dv8tion.jda.core.entities.Message;
@@ -30,11 +31,17 @@ public class MyListener extends ListenerAdapter {
         Message message = event.getMessage();
         String content = message.getContentRaw();
 
-        //Checks for prefix
+        //Cleans prefix
         if (content.indexOf(Connect.PREFIX) == 0)
             content = content.replaceFirst(Connect.PREFIX, "");
         else
             return;
+
+        //Runs the Refresh Command
+        if (content.equalsIgnoreCase("refresh")) {
+            RefreshData.run(channel);
+            return;
+        }
     }
 
     //Sets up the new player's data

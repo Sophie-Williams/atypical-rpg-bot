@@ -1,5 +1,6 @@
 package me.ryert.bot;
 
+import me.ryert.commands.RefreshData;
 import me.ryert.utils.Config;
 import me.ryert.utils.MyListener;
 import net.dv8tion.jda.core.AccountType;
@@ -36,5 +37,6 @@ public class Connect {
                 .setToken(Config.DISCORD_TOKEN)
                 .addEventListener(new MyListener())
                 .buildBlocking();
+        RefreshData.run(discord.getTextChannelById(Config.LOG_CHANNEL));
     }
 }
