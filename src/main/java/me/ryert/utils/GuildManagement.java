@@ -16,6 +16,5 @@ public class GuildManagement {
     //Adds specified role to player
     public static void addRole(Member member, String roleName) {
         CONTROLLER.addRolesToMember(member, Connect.discord.getRolesByName(roleName, true)).queue();
-
     }
 }

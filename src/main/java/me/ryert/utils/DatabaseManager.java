@@ -6,7 +6,6 @@ import me.ryert.player.data.Player;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.*;
 
@@ -40,15 +39,34 @@ public class DatabaseManager {
         }
     }
 
-    public static void update() {
+    //Looks up the member
+    public static boolean isPresent(String discordID) {
+        boolean search = false;
+        try {
+            Connection dbConn = DriverManager.getConnection("jdbc:sqlite:" + Connect.DATABASE);
+            Statement statement = dbConn.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT DiscordID FROM Player");
+            while (resultSet.next())
+                if (resultSet.getString(1).equals(discordID))
+                    search = true;
+            statement.close();
+            resultSet.close();
+            dbConn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return search;
+    }
+
+    public static void update(String discordID, Player player) {
         //TODO
     }
 
-    public static void delete() {
+    public static void update(String discordID, Inventory inventory) {
         //TODO
     }
 
-    public static void pull() {
+    public static void delete(String discordID) {
         //TODO
     }
 }
