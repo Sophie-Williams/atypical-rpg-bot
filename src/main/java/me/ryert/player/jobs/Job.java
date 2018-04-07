@@ -14,16 +14,17 @@ public abstract class Job implements Serializable {
         Name = "No Job Selected";
         level = 0;
     }
-    public int getName() {
+
+    public String getName() {
         return Name;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setName(String name) {
+        Name = name;
     }
 
-    public long getName() {
-        return Name;
+    public int getLevel() {
+        return level;
     }
 
     public void setLevel(int level) {
