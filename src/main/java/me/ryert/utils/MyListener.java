@@ -49,7 +49,7 @@ public class MyListener extends ListenerAdapter {
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         GuildManagement.addRole(event.getMember(), "Arrival");
         if (!DatabaseManager.isPresent(event.getUser().getId()))
-            DatabaseManager.add(event.getMember().getUser().getId(), new Player(), new Inventory(7));
+            DatabaseManager.add(event.getMember().getUser().getId(), new Player());
     }
 
     @Override
