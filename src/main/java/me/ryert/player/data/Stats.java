@@ -1,6 +1,8 @@
 package me.ryert.player.data;
 
-public class Stats {
+import java.io.Serializable;
+
+public class Stats implements Serializable {
     private int intelligence;
 
     public Stats() {

@@ -53,15 +53,49 @@ public class DatabaseManager {
         return search;
     }
 
+    //Updates the player data
     public static void update(String discordID, Player player) {
-        //TODO
+        try {
+            Connection dbConn = DriverManager.getConnection("jdbc:sqlite:" + Connect.DATABASE);
+            ByteArrayOutputStream byteArrayOutStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutStream = new ObjectOutputStream(byteArrayOutStream);
+            objectOutStream.writeObject(player);
+            byte[] playerAsBytes = byteArrayOutStream.toByteArray();
+            PreparedStatement statement = dbConn
+                    .prepareStatement("UPDATE Player set Stats= ? WHERE DiscordID='" + discordID + "'");
+            ByteArrayInputStream byteArrayInStream = new ByteArrayInputStream(playerAsBytes);
+            statement.setBinaryStream(1, byteArrayInStream, playerAsBytes.length);
+            statement.executeUpdate();
+            statement.close();
+            dbConn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void update(String discordID, Inventory inventory) {
-        //TODO
+    //Updates a players guild registration
+    public static void update(String discordID, int guildID) {
+        try {
+            Connection dbConn = DriverManager.getConnection("jdbc:sqlite:" + Connect.DATABASE);
+            Statement statement = dbConn.createStatement();
+            statement.execute("UPDATE Player set GuildID='" + guildID + "' WHERE DiscordID='" + discordID + "'");
+            statement.close();
+            dbConn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    //Deletes a player from the database
     public static void delete(String discordID) {
-        //TODO
+        try {
+            Connection dbConn = DriverManager.getConnection("jdbc:sqlite:" + Connect.DATABASE);
+            Statement statement = dbConn.createStatement();
+            statement.execute("DELETE FROM Player WHERE DiscordID='" + discordID + "'");
+            statement.close();
+            dbConn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

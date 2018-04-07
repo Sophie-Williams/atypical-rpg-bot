@@ -25,7 +25,7 @@ public class RefreshData {
         int badUser = 0;
         for (Member member : GuildManagement.CONTROLLER.getGuild().getMembers()) {
             if (!DatabaseManager.isPresent(member.getUser().getId()))
-                DatabaseManager.add(member.getUser().getId(), new Player(), new Inventory(7));
+                DatabaseManager.add(member.getUser().getId(), new Player());
             if (member.getRoles().size() == 0) {
                 GuildManagement.addRole(member, "Arrival");
                 badUser++;
