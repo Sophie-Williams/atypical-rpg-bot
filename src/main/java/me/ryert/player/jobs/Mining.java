@@ -8,15 +8,15 @@ import me.ryert.player.data.Player;
  */
 public class Mining {
 
-    int speed, rate, cooldown;
+    static double coolMax, rate, cooldown;
     public Mining(){
-        speed = 1;
+        coolMax = 1;
         rate = 1;
         cooldown = 1;
     }
 
     //This is what will be called when the user does --mine or whatever
-    public void mine(Player player){
+    public static void mine(Player player){
         if(coolDown()) {
             player.transact(getMoney());
             coolDownReset();
@@ -26,22 +26,29 @@ public class Mining {
 
     }
 
-    public int getMoney(){
-        return rate / speed;
+    public static int getMoney(){
+        return (int) (rate);
     }
 
-    //make this so that mine cannot be done again for "cooldown" minutes
-    public boolean coolDown(){
+    //TODO make this so that mine cannot be done again for "cooldown" minutes
+    public static boolean coolDown(){
         if(cooldown == 0)
             return true;
         else
             return false;
     }
 
-    public void coolDownReset(){
-        cooldown = speed;
+    public static void coolDownReset(){
+        cooldown = coolMax;
     }
 
+    public static void upgradeMax(Player player){
+
+    }
+
+    public static void upgradeRate(Player player){
+
+    }
 
 
 }

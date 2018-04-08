@@ -8,11 +8,12 @@ import java.io.Serializable;
  */
 public abstract class Job implements Serializable {
     private String Name;
-    private int level;
+    private int level, exp;
 
     public Job(){
         Name = "No Job Selected";
         level = 0;
+        exp = 0;
     }
 
     public String getName() {
@@ -29,5 +30,13 @@ public abstract class Job implements Serializable {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.level = exp;
     }
 }
