@@ -5,6 +5,7 @@ import me.ryert.player.data.Player;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.*;
 
@@ -29,6 +30,7 @@ public class DatabaseManager {
             statement.setBinaryStream(1, byteArrayInStream, playerAsBytes.length);
             statement.executeUpdate();
             statement.close();
+            dbConn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,6 +53,28 @@ public class DatabaseManager {
             e.printStackTrace();
         }
         return search;
+    }
+
+    //Returns a Player file to edit
+    public static Player get(String discordID) {
+        Player player = null;
+        try {
+            Connection dbConn = DriverManager.getConnection("jdbc:sqlite:" + Connect.DATABASE);
+            Statement statement = dbConn.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT Stats FROM Player WHERE DiscordID IS " + discordID);
+            while (resultSet.next()) {
+                byte[] st = (byte[]) resultSet.getObject(1);
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(st);
+                ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+                player= (Player) objectInputStream.readObject();
+            }
+            statement.close();
+            resultSet.close();
+            dbConn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return player;
     }
 
     //Updates the player data
