@@ -53,6 +53,10 @@ public class Player implements Serializable {
         return true;
     }
 
+    public int getBalance() {
+        return balance;
+    }
+
     //Changes the player's class
     public void setCharacterClass(ICharacterClass characterClass) {
         this.characterClass = characterClass;
