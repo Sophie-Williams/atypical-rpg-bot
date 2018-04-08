@@ -53,6 +53,7 @@ public class Player implements Serializable {
         return true;
     }
 
+    //Returns players current balance
     public int getBalance() {
         return balance;
     }
